@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nora AI — Aslıhan Yıldırım</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink: #262626;
+      --accent: #fffcde;
+      --bg: #ffffff;
+      --font: "Figtree", sans-serif;
+    }
+
+    body {
+      font-family: var(--font);
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ===== Nav ===== */
+    .nav {
+      margin: 12px auto 4px;
+      height: 56px;
+      width: max-content;
+      background: #ffffff;
+      border: 1px solid #efece8;
+      border-radius: 100px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 0 8px;
+      z-index: 1000;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #262626;
+      text-decoration: none;
+      border-radius: 100px;
+      transition: background 0.2s ease;
+    }
+    .nav-item:hover { background: #f5f2ee; }
+    .nav-item.active { background: var(--accent); }
+    .nav-item.active:hover { background: var(--accent); }
+
+    /* ===== Back link ===== */
+    .back {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 14px; font-weight: 600; color: var(--ink);
+      padding: 24px 40px;
+      transition: opacity .2s;
+    }
+    .back:hover { opacity: .55; }
+
+    /* ===== Hero wrapper ===== */
+    .hero-wrap {
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 40px 8px;
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    /* ===== Main card ===== */
+    .hero-card {
+      position: relative;
+      background: var(--accent);
+      border-radius: 28px;
+      padding: 40px 56px;
+      min-height: 480px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-text {
+      max-width: 56%;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .hero-brand {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 28px;
+    }
+    .hero-brand img {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+    .hero-brand img.hero-brand-logo--lg {
+      width: auto;
+      height: 24px;
+      border-radius: 0;
+    }
+    .hero-brand span {
+      font-size: 22px; font-weight: 800;
+      letter-spacing: -.3px;
+      color: var(--ink);
+    }
+
+    .hero-title {
+      font-size: 40px;
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -1.4px;
+      margin-bottom: 28px;
+      color: var(--ink);
+    }
+
+    .hero-body {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.65;
+      color: var(--ink);
+      margin-bottom: auto;
+      max-width: 620px;
+    }
+
+    /* Stats at bottom of card — no border, typographic hierarchy only */
+    .hero-stats {
+      display: flex;
+      gap: 56px;
+      margin-top: 36px;
+    }
+    .stat-label {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -.3px;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+    .stat-val {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--ink);
+      max-width: 240px;
+    }
+
+    /* Phone — sized & positioned per Raiffeisenbank reference (big, bottom-cropped) */
+    .hero-phone {
+      position: absolute;
+      right: -320px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 720px;
+      pointer-events: none;
+    }
+    .hero-phone img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 24px 48px rgba(0,0,0,.16));
+    }
+
+    /* ===== Sidebar ===== */
+    .hero-side {
+      background: #f4f4f2;
+      border-radius: 24px;
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 32px;
+    }
+    .side-tile {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .side-tile img {
+      width: 72px; height: 72px;
+      padding: 8px;
+      background: #ffffff;
+      border-radius: 50%;
+      object-fit: contain;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    .side-tile-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .side-tile-label {
+      font-size: 18px;
+      color: var(--ink);
+      font-weight: 500;
+      letter-spacing: -.2px;
+    }
+    .side-tile-val {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.3;
+      letter-spacing: -.2px;
+    }
+
+    /* ===== Problem section ===== */
+    .problem {
+      width: 100%;
+      max-width: none;
+      margin: 0 auto;
+      padding: 8px 40px;
+    }
+    .problem-frame {
+      background: #f4f4f2;
+      border-radius: 32px;
+      padding: 32px 40px 40px;
+      overflow: hidden;
+    }
+    .problem-head {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .problem-head-top {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .problem-lede {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.55;
+      color: var(--ink);
+      max-width: none;
+    }
+    .problem-icon {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -.5px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      flex-shrink: 0;
+    }
+    .problem-h2 {
+      font-size: 44px;
+      font-weight: 800;
+      letter-spacing: -1.6px;
+      line-height: 1;
+      color: var(--ink);
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .problem-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      min-height: 380px;
+    }
+    .problem-card-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 24px;
+    }
+    .problem-card-text.problem-card-text--root {
+      justify-content: flex-start;
+      padding-top: 68px;
+      gap: 19px;
+    }
+    .problem-card-text.problem-card-text--cascade {
+      justify-content: flex-start;
+      padding-top: 68px;
+      gap: 44px;
+    }
+    .problem-card-text.problem-card-text--signal {
+      justify-content: flex-start;
+      padding-top: 68px;
+      gap: 19px;
+    }
+    .problem-card-desc {
+      max-width: 440px;
+    }
+    .problem-visual {
+      flex: 1;
+      position: relative;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .problem-card-title {
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -.4px;
+      line-height: 1.2;
+      color: var(--ink);
+      text-align: center;
+    }
+    .problem-card-desc {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.55;
+      color: var(--ink);
+      text-align: center;
+    }
+    .problem-card-text {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .problem-eyebrow {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #eab308;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    /* Card 1 — chat bubbles + receipt */
+    .v1 {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    .bubble {
+      position: absolute;
+      background: #fff;
+      border-radius: 16px;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.35;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+      max-width: 200px;
+    }
+    .bubble.mint { background: var(--accent); }
+    .bubble.b1 { top: 0; left: 0; }
+    .bubble.b2 { top: 78px; right: 0; }
+    .receipt {
+      position: absolute;
+      bottom: 0;
+      left: 24px;
+      width: 130px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 14px 14px 16px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+      transform: rotate(-4deg);
+    }
+    .receipt-head {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .5px;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .receipt-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: var(--ink);
+      font-weight: 500;
+      padding: 3px 0;
+      border-bottom: 1px dashed #e8e6e2;
+    }
+    .receipt-row:last-of-type { border-bottom: none; }
+    .receipt-total {
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1.5px solid var(--ink);
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    /* Card 2 — event budget list with ? */
+    .v2 {
+      width: 100%;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px 18px 20px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+    }
+    .v2-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #efefef;
+    }
+    .v2-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    .v2-tag {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 10px;
+      background: var(--accent);
+      color: var(--ink);
+    }
+    .v2-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+    }
+    .v2-row-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .v2-row-amt {
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(38,38,38,0.6);
+      background: #f0f0ed;
+      padding: 3px 10px;
+      border-radius: 8px;
+    }
+    .v2-total {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1.5px dashed #e8e6e2;
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(38,38,38,0.55);
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    /* Card 3 — pending payment + reminder (assets) */
+    .v3 {
+      width: 100%;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: center;
+    }
+    .v3-img {
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.05));
+    }
+
+    /* ===== Root cause section ===== */
+    .root {
+      width: 100%;
+      padding: 8px 40px 64px;
+    }
+    .root-frame {
+      background: #f4f4f2;
+      border-radius: 32px;
+      padding: 32px 40px 56px;
+    }
+    .root-head {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 32px;
+    }
+    .root-h2 {
+      font-size: 44px;
+      font-weight: 800;
+      letter-spacing: -1.6px;
+      line-height: 1.05;
+      color: var(--ink);
+    }
+
+    .root-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .root-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 48px 56px;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .root-eyebrow {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #eab308;
+      text-transform: uppercase;
+    }
+    .root-card-title {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -.5px;
+      line-height: 1.25;
+      color: var(--ink);
+      max-width: 560px;
+    }
+    .root-card-desc {
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.65;
+      color: var(--ink);
+      max-width: 560px;
+    }
+    .root-arrow {
+      font-size: 24px;
+      font-weight: 500;
+      color: rgba(38,38,38,0.45);
+      line-height: 1;
+    }
+
+    /* ===== Screens image ===== */
+    .screens-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .screens-img--small {
+      width: 75%;
+      margin: 0 auto;
+      margin-bottom: -20px;
+    }
+    .screens-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .screens-frame--centered {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .screens-frame--centered .problem-head {
+      margin-bottom: 16px;
+    }
+    .screens-frame--centered .screens-img--small {
+      width: 72%;
+      margin: 20px auto;
+    }
+    .screens-frame .problem-head {
+      margin-bottom: 0;
+    }
+
+    /* ===== Outcome ===== */
+    .outcome-frame {
+      background: #FFFCDE;
+    }
+    .outcome-body {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+    .outcome-intro {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .outcome-title {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      color: var(--ink);
+    }
+    .outcome-sub {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+    .outcome-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .outcome-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 0 40px 0 0;
+      border-right: 1.5px solid rgba(38,38,38,0.15);
+      padding-right: 40px;
+    }
+    .outcome-col:first-child { padding-left: 0; }
+    .outcome-col:last-child { border-right: none; padding-right: 0; }
+    .outcome-col + .outcome-col { padding-left: 40px; }
+    .outcome-col-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .outcome-dot {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1;
+      margin-top: 2px;
+    }
+    .outcome-col-title {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -.4px;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+    .outcome-col-desc {
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.6;
+      color: var(--ink);
+      padding-left: 22px;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 1100px) {
+      .hero-wrap { grid-template-columns: 1fr; }
+      .hero-text { max-width: 100%; }
+      .hero-phone { position: static; transform: none; width: 100%; max-width: 280px; margin: 32px auto 0; }
+      .hero-side { flex-direction: row; }
+    }
+    @media (max-width: 720px) {
+      .back { padding: 20px 24px; }
+      .hero-wrap { padding: 0 16px 40px; }
+      .hero-card { padding: 36px 28px; min-height: auto; }
+      .hero-title { font-size: 40px; }
+      .hero-stats { flex-direction: column; gap: 24px; }
+      .hero-side { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-item active">Home</a>
+    <a href="about.html" class="nav-item">About</a>
+    <a href="contact.html" class="nav-item">Contact</a>
+  </nav>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero-wrap">
+
+    <!-- Main mint card -->
+    <div class="hero-card">
+      <div class="hero-text">
+        <div class="hero-brand">
+          <img src="assets/nora_logo.png" alt="Nora AI" class="hero-brand-logo--lg" />
+        </div>
+
+        <h1 class="hero-title">
+          Fikirden içeriğe uzanan üretim sürecinde yanında olan bir yapay zekâ deneyimi.
+        </h1>
+
+        <p class="hero-body">
+          NORA AI; kullanıcıların fikirlerini geliştirmelerine, içeriklerini yapılandırmalarına ve yazım süreçlerini daha akıcı şekilde ilerletmelerine yardımcı olmak için tasarlanmış bir yapay zekâ platformu landing page konseptidir. Ürünün sunduğu üretim desteğini, ilk etkileşimden itibaren görünür kılan sade, yönlendirici ve etkileşim odaklı bir web deneyimi sunar.
+        </p>
+
+        <div class="hero-stats">
+          <div>
+            <div class="stat-label">Proje Türü</div>
+            <div class="stat-val">Landing page konsepti</div>
+          </div>
+          <div>
+            <div class="stat-label">Kapsam</div>
+            <div class="stat-val">Marka dili, içerik hiyerarşisi, web arayüz tasarımı ve etkileşim tasarımı</div>
+          </div>
+          <div>
+            <div class="stat-label">Odak</div>
+            <div class="stat-val">Fikir geliştirme, içerik üretimi ve kullanıcıyı doğrudan üretim akışına yönlendirme</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone mockup -->
+      <div class="hero-phone">
+        <img src="assets/nora1.png" alt="Nora AI" />
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="hero-side">
+      <div class="side-tile">
+        <img src="assets/noraikon.png" alt="" />
+        <div class="side-tile-text">
+          <div class="side-tile-label">Role:</div>
+          <div class="side-tile-val">Product Designer</div>
+        </div>
+      </div>
+      <div class="side-tile">
+        <img src="assets/noraikon2.png" alt="" />
+        <div class="side-tile-text">
+          <div class="side-tile-label">Team:</div>
+          <div class="side-tile-val">Solo project</div>
+        </div>
+      </div>
+      <div class="side-tile">
+        <img src="assets/noraikon3.png" alt="" />
+        <div class="side-tile-text">
+          <div class="side-tile-label">Timeline:</div>
+          <div class="side-tile-val">2 gün</div>
+        </div>
+      </div>
+    </aside>
+
+  </section>
+
+  <!-- ===== Process - Hero Alanı ===== -->
+  <section class="problem">
+    <div class="problem-frame screens-frame screens-frame--centered">
+      <div class="problem-head">
+        <div class="problem-head-top">
+          <div class="problem-icon">1</div>
+          <h2 class="problem-h2">Hero Alanı</h2>
+        </div>
+      </div>
+      <div class="screens-center">
+        <img src="assets/nora1.png" alt="Hero Alanı" class="screens-img screens-img--small" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Process - Ürün Tanıtım Alanı ===== -->
+  <section class="problem">
+    <div class="problem-frame screens-frame screens-frame--centered">
+      <div class="problem-head">
+        <div class="problem-head-top">
+          <div class="problem-icon">2</div>
+          <h2 class="problem-h2">Ürün Tanıtım Alanı</h2>
+        </div>
+      </div>
+      <div class="screens-center">
+        <img src="assets/nora2.png" alt="Ürün Tanıtım Alanı" class="screens-img screens-img--small" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Process - Özellikler Alanı ===== -->
+  <section class="problem">
+    <div class="problem-frame screens-frame screens-frame--centered">
+      <div class="problem-head">
+        <div class="problem-head-top">
+          <div class="problem-icon">3</div>
+          <h2 class="problem-h2">Özellikler Alanı</h2>
+        </div>
+      </div>
+      <div class="screens-center">
+        <img src="assets/nora3.png" alt="Özellikler Alanı" class="screens-img screens-img--small" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Process - Marka ve Etkileşim Dili ===== -->
+  <section class="problem">
+    <div class="problem-frame screens-frame screens-frame--centered">
+      <div class="problem-head">
+        <div class="problem-head-top">
+          <div class="problem-icon">4</div>
+          <h2 class="problem-h2">Marka ve Etkileşim Dili</h2>
+        </div>
+      </div>
+      <div class="screens-center">
+        <img src="assets/nora4.png" alt="Marka ve Etkileşim Dili" class="screens-img screens-img--small" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Outcome ===== -->
+  <section class="problem">
+    <div class="problem-frame outcome-frame">
+      <div class="problem-head">
+        <div class="problem-head-top">
+          <div class="problem-icon">5</div>
+          <h2 class="problem-h2">Outcome</h2>
+        </div>
+      </div>
+      <div class="outcome-body">
+        <div class="outcome-intro">
+          <h3 class="outcome-title">İçerik üretim sürecini daha akıcı, net ve kullanıcıyı destekleyen bir deneyim olarak ele alıyoruz.</h3>
+          <p class="outcome-sub">NORA AI; fikir geliştirme, taslak iyileştirme ve yayınlanabilir içerik oluşturma adımlarını tek bir deneyimde bir araya getirerek kullanıcıların üretim sürecini daha kontrollü ve yönlendirici biçimde ilerletmesini amaçlar.</p>
+        </div>
+        <div class="outcome-cols">
+          <div class="outcome-col">
+            <div class="outcome-col-head">
+              <span class="outcome-dot">·</span>
+              <h4 class="outcome-col-title">Daha Net Başlangıç</h4>
+            </div>
+            <p class="outcome-col-desc">Kullanıcılar, kısa bir fikir veya prompt ile içerik üretim sürecine doğrudan başlayabilir.</p>
+          </div>
+          <div class="outcome-col">
+            <div class="outcome-col-head">
+              <span class="outcome-dot">·</span>
+              <h4 class="outcome-col-title">Daha Düzenli İçerik Akışı</h4>
+            </div>
+            <p class="outcome-col-desc">Dağınık fikirler, yapılandırılmış taslaklara dönüştürülerek yazım süreci daha kolay takip edilebilir hâle gelir.</p>
+          </div>
+          <div class="outcome-col">
+            <div class="outcome-col-head">
+              <span class="outcome-dot">·</span>
+              <h4 class="outcome-col-title">Daha Kolay Yayınlama</h4>
+            </div>
+            <p class="outcome-col-desc">İçerikler farklı formatlara uyarlanabilir ve dışa aktarma seçenekleriyle yayınlamaya hazır biçimde kullanılabilir.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="padding: 64px 0; display: flex; justify-content: center;">
+    <nav class="nav">
+      <a href="index.html" class="nav-item active">Home</a>
+      <a href="about.html" class="nav-item">About</a>
+      <a href="contact.html" class="nav-item">Contact</a>
+    </nav>
+  </div>
+
+</body>
+</html>

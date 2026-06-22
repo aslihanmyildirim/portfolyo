@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estram - Aslıhan Yıldırım</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink: #262626;
+      --accent: #ffe8e0;
+      --bg: #ffffff;
+      --font: "Figtree", sans-serif;
+    }
+
+    body {
+      font-family: var(--font);
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ===== Nav ===== */
+    .nav {
+      margin: 12px auto 4px;
+      height: 56px;
+      width: max-content;
+      background: #ffffff;
+      border: 1px solid #efece8;
+      border-radius: 100px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 0 8px;
+      z-index: 1000;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #262626;
+      text-decoration: none;
+      border-radius: 100px;
+      transition: background 0.2s ease;
+    }
+    .nav-item:hover { background: #f5f2ee; }
+    .nav-item.active { background: var(--accent); }
+    .nav-item.active:hover { background: var(--accent); }
+
+    /* ===== Hero wrapper ===== */
+    .hero-wrap {
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 40px 8px;
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    /* ===== Main card ===== */
+    .hero-card {
+      position: relative;
+      background: var(--accent);
+      border-radius: 28px;
+      padding: 40px 56px;
+      min-height: 480px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-text {
+      max-width: 56%;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .hero-brand {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: -32px;
+    }
+    .hero-brand img {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+    .hero-brand img.hero-brand-logo--lg {
+      width: auto;
+      border-radius: 0;
+      height: 100px;
+      transform: translateY(-8px);
+    }
+
+    .hero-title {
+      font-size: 40px;
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -1.4px;
+      margin-bottom: 28px;
+      color: var(--ink);
+    }
+
+    .hero-body {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.65;
+      color: var(--ink);
+      margin-bottom: auto;
+      max-width: 620px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 56px;
+      margin-top: 36px;
+    }
+    .stat-label {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -.3px;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+    .stat-val {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--ink);
+      max-width: 240px;
+    }
+
+    .hero-phone {
+      position: absolute;
+      right: 4%;
+      top: 36px;
+      width: 340px;
+      pointer-events: none;
+    }
+    .hero-phone img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 24px 48px rgba(0,0,0,.16));
+    }
+
+    /* ===== Sidebar ===== */
+    .hero-side {
+      background: #f4f4f2;
+      border-radius: 24px;
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 32px;
+    }
+    .side-tile {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .side-tile img {
+      width: 72px; height: 72px;
+      padding: 8px;
+      background: #ffffff;
+      border-radius: 50%;
+      object-fit: contain;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    .side-tile-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .side-tile-label {
+      font-size: 18px;
+      color: var(--ink);
+      font-weight: 500;
+      letter-spacing: -.2px;
+    }
+    .side-tile-val {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.3;
+      letter-spacing: -.2px;
+    }
+
+    /* ===== Problem / frame sections ===== */
+    .problem {
+      width: 100%;
+      max-width: none;
+      margin: 0 auto;
+      padding: 8px 40px;
+    }
+    .problem-frame {
+      background: #f4f4f2;
+      border-radius: 32px;
+      padding: 32px 40px 40px;
+      overflow: hidden;
+    }
+    .problem-head {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .problem-head-top {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .problem-lede {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.55;
+      color: var(--ink);
+      max-width: none;
+    }
+    .problem-icon {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -.5px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      flex-shrink: 0;
+    }
+    .problem-h2 {
+      font-size: 44px;
+      font-weight: 800;
+      letter-spacing: -1.6px;
+      line-height: 1;
+      color: var(--ink);
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .problem-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      min-height: 380px;
+    }
+    .problem-card-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .problem-card-text--root {
+      justify-content: flex-start;
+      padding-top: 68px;
+      gap: 19px;
+    }
+    .problem-card-text--cascade {
+      justify-content: flex-start;
+      padding-top: 68px;
+      gap: 19px;
+    }
+    .problem-card-text--signal {
+      justify-content: flex-start;
+      padding-top: 68px;
+      gap: 19px;
+    }
+    .problem-card-title {
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -.4px;
+      line-height: 1.2;
+      color: var(--ink);
+      text-align: center;
+    }
+    .problem-card-desc {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.55;
+      color: var(--ink);
+      text-align: center;
+      max-width: 440px;
+    }
+    .problem-eyebrow {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #ff6d01;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    /* ===== User Research ===== */
+    .ur-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 20px 0;
+    }
+    .ur-card {
+      background: #FFFBF9;
+      color: #4C4C4C;
+      border-radius: 24px;
+      padding: 28px 24px 28px;
+      display: flex;
+      flex-direction: column;
+      min-height: 380px;
+      position: relative;
+      transition: transform .2s ease;
+    }
+    .ur-card--alt {
+      background: #4C4C4C;
+      color: #FFFBF9;
+    }
+    .ur-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .ur-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #FFF0E8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--ink);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      flex-shrink: 0;
+    }
+    .ur-name {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -.3px;
+      line-height: 1.2;
+      color: inherit;
+    }
+    .ur-role {
+      font-size: 14px;
+      font-weight: 600;
+      opacity: .7;
+      line-height: 1.3;
+      margin-top: 2px;
+      color: inherit;
+    }
+    .ur-quote {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.55;
+      color: inherit;
+      margin-bottom: 16px;
+    }
+    .ur-need {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.5;
+      color: inherit;
+    }
+    .ur-need strong {
+      font-weight: 800;
+    }
+    .ur-num {
+      margin-top: auto;
+      font-size: 64px;
+      font-weight: 500;
+      letter-spacing: -1.5px;
+      color: inherit;
+      line-height: 1;
+    }
+
+    /* ===== Whatchanged (two-column comparison) ===== */
+    .wc-head {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+    .wc-icon {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .wc-icon img {
+      width: 60%;
+      height: 60%;
+      object-fit: contain;
+    }
+    .wc-h2 {
+      font-size: 44px;
+      font-weight: 800;
+      letter-spacing: -1.6px;
+      line-height: 1;
+      color: var(--ink);
+    }
+    .wc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .wc-card {
+      background: #E9E9E9;
+      border-radius: 30px;
+      padding: 40px 44px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      overflow: hidden;
+    }
+    .wc-card-title {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -.6px;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+    .wc-card-desc {
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.55;
+      color: var(--ink);
+      max-width: 520px;
+    }
+    .wc-mockups {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 16px;
+      margin-top: auto;
+      padding-top: 16px;
+    }
+    .wc-mockups img {
+      width: 55%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* ===== Screens ===== */
+    .screens-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .screens-img--small {
+      width: 75%;
+      margin: 0 auto;
+      margin-bottom: -20px;
+    }
+    .screens-frame .problem-head {
+      margin-bottom: 0;
+    }
+    .screens-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .screens-frame--centered {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .screens-frame--centered .problem-head {
+      margin-bottom: 16px;
+    }
+    .screens-frame--centered .screens-img--small {
+      width: 90%;
+      margin: 20px auto;
+    }
+
+    /* ===== Outcome ===== */
+    .outcome-frame {
+      background: var(--accent);
+    }
+    .outcome-body {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+    .outcome-intro {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .outcome-title {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      color: var(--ink);
+    }
+    .outcome-sub {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+    .outcome-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .outcome-col {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 0 40px 0 0;
+      border-right: 1.5px solid rgba(38,38,38,0.15);
+      padding-right: 40px;
+    }
+    .outcome-col:first-child { padding-left: 0; }
+    .outcome-col:last-child { border-right: none; padding-right: 0; }
+    .outcome-col + .outcome-col { padding-left: 40px; }
+    .outcome-col-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      min-height: 60px;
+    }
+    .outcome-dot { display: none; }
+    .outcome-col-title {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -.4px;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+    .outcome-col-desc {
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.6;
+      color: var(--ink);
+      padding-left: 0;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 1100px) {
+      .hero-wrap { grid-template-columns: 1fr; }
+      .hero-text { max-width: 100%; }
+      .hero-phone { position: static; transform: none; width: 100%; max-width: 280px; margin: 32px auto 0; }
+      .hero-side { flex-direction: row; }
+    }
+    @media (max-width: 720px) {
+      .hero-wrap { padding: 0 16px 40px; }
+      .hero-card { padding: 36px 28px; min-height: auto; }
+      .hero-title { font-size: 40px; }
+      .hero-stats { flex-direction: column; gap: 24px; }
+      .hero-side { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-item active">Home</a>
+    <a href="about.html" class="nav-item">About</a>
+    <a href="contact.html" class="nav-item">Contact</a>
+  </nav>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero-wrap">
+
+    <div class="hero-card">
+      <div class="hero-text">
+        <div class="hero-brand">
+          <img src="assets/estram_logo.png" alt="Estram" class="hero-brand-logo--lg" />
+        </div>
+
+        <h1 class="hero-title">
+          Şehir içi hareketliliği daha anlaşılır hale getiren ulaşım deneyimi.
+        </h1>
+
+        <p class="hero-body">
+          Estram Redesign; kullanıcıların şehir içindeki yolculuklarını daha kolay planlamalarını, ulaşım seçeneklerine daha hızlı erişmelerini ve ihtiyaç duydukları bilgileri tek bir deneyim içinde takip etmelerini desteklemek için yeniden tasarlanmış bir mobil ulaşım uygulaması konseptidir.
+        </p>
+
+        <div class="hero-stats">
+          <div>
+            <div class="stat-label">Proje Türü</div>
+            <div class="stat-val">Mobil ulaşım uygulaması redesign</div>
+          </div>
+          <div>
+            <div class="stat-label">Kapsam</div>
+            <div class="stat-val">Kullanıcı akışları, bilgi mimarisi, arayüz tasarımı ve prototipleme</div>
+          </div>
+          <div>
+            <div class="stat-label">Odak</div>
+            <div class="stat-val">Yolculuk planlama, ulaşım bilgilerine erişim, bakiye takibi ve günlük mobilite ihtiyaçları</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-phone">
+        <img src="assets/eskarmockupanaekran.png" alt="Estram app" />
+      </div>
+    </div>
+
+    <aside class="hero-side">
+      <div class="side-tile">
+        <img src="assets/ChatGPT Image 22 Haz 2026 18_32_26 (1).png" alt="" />
+        <div class="side-tile-text">
+          <div class="side-tile-label">Role:</div>
+          <div class="side-tile-val">Product Designer</div>
+        </div>
+      </div>
+      <div class="side-tile">
+        <img src="assets/ChatGPT Image 22 Haz 2026 18_32_28 (2).png" alt="" />
+        <div class="side-tile-text">
+          <div class="side-tile-label">Team:</div>
+          <div class="side-tile-val">Solo project</div>
+        </div>
+      </div>
+      <div class="side-tile">
+        <img src="assets/ChatGPT Image 22 Haz 2026 18_32_29 (3).png" alt="" />
+        <div class="side-tile-text">
+          <div class="side-tile-label">Timeline:</div>
+          <div class="side-tile-val">5 gün</div>
+        </div>
+      </div>
+    </aside>
+
+  </section>
+
+  <!-- ===== Problem ===== -->
+  <section class="problem">
+    <div class="problem-frame">
+
+      <div class="problem-head">
+        <div class="problem-head-top">
+          <div class="problem-icon">1</div>
+          <h2 class="problem-h2">Problem</h2>
+        </div>
+        <p class="problem-lede">
+          Şehir içi ulaşımda kullanıcılar yalnızca bir araca binmek için değil; rota oluşturmak, hatları karşılaştırmak, yaklaşan seferleri takip etmek ve kart bakiyelerini kontrol etmek için uygulamaya başvurur. Mevcut deneyimde bu bilgiler farklı alanlara dağıldığında, kullanıcıların yolculuk öncesinde ve yolculuk sırasında ihtiyaç duyduğu içeriğe hızlıca ulaşması zorlaşabilir.
+        </p>
+      </div>
+
+      <div class="problem-grid">
+
+        <div class="problem-card">
+          <div class="problem-eyebrow">Root Cause</div>
+          <div class="problem-card-text problem-card-text--root">
+            <h3 class="problem-card-title">Ulaşım bilgileri kullanıcı önceliklerine göre yeterince görünür değil.</h3>
+            <p class="problem-card-desc">Rota planlama, hat ve durak bilgileri, yaklaşan seferler ve kart işlemleri aynı deneyimin parçası olsa da kullanıcı için en kritik aksiyonlar ilk bakışta net biçimde ayrışmayabilir. Bu durum, uygulamanın sunduğu bilgiyi taramayı ve doğru noktaya yönelmeyi zorlaştırır.</p>
+          </div>
+        </div>
+
+        <div class="problem-card">
+          <div class="problem-eyebrow">Cascade</div>
+          <div class="problem-card-text problem-card-text--cascade">
+            <h3 class="problem-card-title">Yolculuk planlama süreci daha fazla efor gerektirir.</h3>
+            <p class="problem-card-desc">Kullanıcı ihtiyaç duyduğu bilgiye doğrudan ulaşamadığında; hatlar arasında geçiş yapmak, doğru durağı bulmak veya sefer durumunu kontrol etmek için daha fazla adım atmak zorunda kalır. Özellikle zaman baskısı altındaki anlarda bu yapı, ulaşım deneyimini daha yorucu hale getirebilir.</p>
+          </div>
+        </div>
+
+        <div class="problem-card">
+          <div class="problem-eyebrow">User Signal</div>
+          <div class="problem-card-text problem-card-text--signal">
+            <h3 class="problem-card-title">"Nereye bakmam gerektiğini hızlıca anlayabilmeliyim."</h3>
+            <p class="problem-card-desc">Kullanıcılar; hangi ulaşım seçeneğinin kendileri için uygun olduğunu, araçlarının ne zaman geleceğini ve yolculukla ilgili temel bilgileri tek bakışta görebilmeye ihtiyaç duyar. Uygulamanın, karar anında kullanıcıyı bilgi kalabalığıyla değil; net yönlendirmelerle desteklemesi beklenir.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== What didn't work ===== -->
+  <section class="problem">
+    <div class="problem-frame" style="background:#f4f4f2;">
+      <div class="wc-head">
+        <div class="problem-icon">2</div>
+        <h2 class="wc-h2">Mevcut deneyimde ne çalışmıyordu?</h2>
+      </div>
+
+      <div class="wc-grid">
+
+        <div class="wc-card">
+          <h3 class="wc-card-title">01 - Bilgiye ulaşmak ek çaba gerektiriyordu</h3>
+          <p class="wc-card-desc">Kullanıcının en sık ihtiyaç duyduğu tramvay saatleri, durak bilgileri ve hat detaylarına ana deneyimde ulaşmak fazla zaman ve çaba gerektiriyordu.</p>
+          <div class="wc-mockups">
+            <img src="assets/eskisol.png" alt="" />
+          </div>
+        </div>
+
+        <div class="wc-card">
+          <h3 class="wc-card-title">02 - Günlük kullanım senaryoları merkeze alınmamıştı</h3>
+          <p class="wc-card-desc">Kullanıcının "tramvay ne zaman geliyor?" veya "hangi duraktan binmeliyim?" gibi anlık ihtiyaçları daha doğrudan ulaşamamaktaydı.</p>
+          <div class="wc-mockups">
+            <img src="assets/eskisa%C4%9F.png" alt="" />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== User Research ===== -->
+  <section class="problem">
+    <div class="problem-frame" style="background:#FFE8E0;">
+      <div class="problem-head">
+        <div class="problem-head-top">
+          <div class="problem-icon">3</div>
+          <h2 class="problem-h2">User Research</h2>
+        </div>
+      </div>
+
+      <div class="ur-grid">
+
+        <div class="ur-card">
+          <div class="ur-head">
+            <div>
+              <div class="ur-name">Ece, 21</div>
+              <div class="ur-role">Üniversite öğrencisi</div>
+            </div>
+          </div>
+          <p class="ur-quote">"Derse yetişmeye çalışırken uygulamada nereye bakacağımı düşünmek istemiyorum. Aracın ne zaman geleceğini direkt görmek istiyorum."</p>
+          <div class="ur-num">01</div>
+        </div>
+
+        <div class="ur-card ur-card--alt">
+          <div class="ur-head">
+            <div>
+              <div class="ur-name">Mert, 27</div>
+              <div class="ur-role">Yeni mezun / çalışan</div>
+            </div>
+          </div>
+          <p class="ur-quote">"Her gün benzer güzergâhları kullanıyorum. Sık kullandığım duraklara ve kart bakiyeme daha hızlı ulaşabilmeliyim."</p>
+          <div class="ur-num">02</div>
+        </div>
+
+        <div class="ur-card">
+          <div class="ur-head">
+            <div>
+              <div class="ur-name">Zeynep, 34</div>
+              <div class="ur-role">Yoğun çalışan ebeveyn</div>
+            </div>
+          </div>
+          <p class="ur-quote">"Şehir içinde farklı ulaşım seçeneklerini kullanıyorum. Hangi seçeneğin benim için daha uygun olduğunu hızlıca anlayabilmek önemli."</p>
+          <div class="ur-num">03</div>
+        </div>
+
+        <div class="ur-card ur-card--alt">
+          <div class="ur-head">
+            <div>
+              <div class="ur-name">Hasan, 30</div>
+              <div class="ur-role">Günlük ulaşımı aktif kullanan kullanıcı</div>
+            </div>
+          </div>
+          <p class="ur-quote">"Uygulama çok fazla şey sunabilir ama benim için önemli olan, ihtiyacım olan bilgiyi kaybolmadan bulabilmek."</p>
+          <div class="ur-num">04</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Process - Onboarding Ekranları ===== -->
+  <section class="problem">
+    <div class="problem-frame screens-frame">
+      <div class="problem-head">
+        <div class="problem-head-top">
+          <div class="problem-icon">4</div>
+          <h2 class="problem-h2">Process - Onboarding Ekranları</h2>
+        </div>
+      </div>
+      <img src="assets/eskartonboarding.png" alt="Onboarding Ekranları" class="screens-img screens-img--small" />
+    </div>
+  </section>
+
+  <!-- ===== Process - Ana Ekranlar ===== -->
+  <section class="problem">
+    <div class="problem-frame screens-frame">
+      <div class="problem-head">
+        <div class="problem-head-top">
+          <div class="problem-icon">4</div>
+          <h2 class="problem-h2">Process - Ana Ekranlar</h2>
+        </div>
+      </div>
+      <img src="assets/eskartanaekranlar.png" alt="Ana Ekranlar" class="screens-img" style="margin: -180px auto -180px; width: 100%;" />
+    </div>
+  </section>
+
+  <!-- ===== Outcome ===== -->
+  <section class="problem" style="padding-bottom: 64px;">
+    <div class="problem-frame outcome-frame">
+      <div class="problem-head">
+        <div class="problem-head-top">
+          <div class="problem-icon">5</div>
+          <h2 class="problem-h2">Outcome</h2>
+        </div>
+      </div>
+      <div class="outcome-body">
+        <div class="outcome-intro">
+          <h3 class="outcome-title">Şehir içi ulaşımı daha görünür, erişilebilir ve günlük kullanım alışkanlıklarına daha uyumlu bir deneyim olarak yeniden ele alıyoruz.</h3>
+          <p class="outcome-sub">Estram Redesign; kullanıcıların bakiye yönetimi, araç takibi, ödeme ve kart işlemleri gibi temel ulaşım ihtiyaçlarını tek bir deneyim içinde daha hızlı takip edebilmesini hedefler.</p>
+        </div>
+        <div class="outcome-cols">
+          <div class="outcome-col">
+            <div class="outcome-col-head">
+              <span class="outcome-dot">·</span>
+              <h4 class="outcome-col-title">Daha Görünür Yolculuk Bilgisi</h4>
+            </div>
+            <p class="outcome-col-desc">Kullanıcılar, favori duraklarından yaklaşan araç bilgilerine ve günlük ulaşım ihtiyaçlarına ana ekrandan daha hızlı erişebilir.</p>
+          </div>
+          <div class="outcome-col">
+            <div class="outcome-col-head">
+              <span class="outcome-dot">·</span>
+              <h4 class="outcome-col-title">Daha Akıcı Kart ve Bakiye Yönetimi</h4>
+            </div>
+            <p class="outcome-col-desc">Bakiye görüntüleme, yükleme, para transferi ve otomatik talimat gibi işlemler daha erişilebilir bir yapı içinde bir araya getirilir.</p>
+          </div>
+          <div class="outcome-col">
+            <div class="outcome-col-head">
+              <span class="outcome-dot">·</span>
+              <h4 class="outcome-col-title">Daha Hızlı ve Temassız Ödeme</h4>
+            </div>
+            <p class="outcome-col-desc">QR ödeme akışı, fiziksel karta ihtiyaç duymadan ulaşım araçlarında daha hızlı ve pratik bir ödeme deneyimi sunmayı amaçlar.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="padding: 64px 0; display: flex; justify-content: center;">
+    <nav class="nav">
+      <a href="index.html" class="nav-item active">Home</a>
+      <a href="about.html" class="nav-item">About</a>
+      <a href="contact.html" class="nav-item">Contact</a>
+    </nav>
+  </div>
+
+</body>
+</html>

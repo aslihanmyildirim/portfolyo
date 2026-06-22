@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Aslıhan Yıldırım</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink: #262626;
+      --accent: #f5f0eb;
+      --bg: #ffffff;
+      --font: "Figtree", sans-serif;
+    }
+
+    body {
+      font-family: var(--font);
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ===== Nav ===== */
+    .nav {
+      margin: 12px auto 4px;
+      height: 56px;
+      width: max-content;
+      background: #ffffff;
+      border: 1px solid #efece8;
+      border-radius: 100px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 0 8px;
+      z-index: 1000;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #262626;
+      text-decoration: none;
+      border-radius: 100px;
+      transition: background 0.2s ease;
+    }
+    .nav-item:hover { background: #f5f2ee; }
+    .nav-item.active { background: var(--accent); }
+    .nav-item.active:hover { background: var(--accent); }
+
+    /* ===== Page ===== */
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 40px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .row {
+      display: grid;
+      gap: 12px;
+    }
+    .row-3 { grid-template-columns: repeat(3, 1fr); }
+    .row-1 { grid-template-columns: 1fr; }
+
+    /* ===== Card ===== */
+    .card {
+      background: #f4f4f2;
+      border-radius: 28px;
+      padding: 28px 28px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 260px;
+      position: relative;
+      text-decoration: none;
+      color: var(--ink);
+      transition: background 0.2s ease;
+      cursor: pointer;
+    }
+    .card:hover { background: #eceae6; }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-label {
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(38,38,38,0.45);
+    }
+    .card-arrow {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: var(--ink);
+      flex-shrink: 0;
+    }
+
+    .card-bottom {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .card-name {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -.6px;
+      color: var(--ink);
+    }
+
+    /* Email card specifics */
+    .card--email { min-height: 200px; }
+    .card--email .card-name { font-size: 24px; letter-spacing: -.4px; }
+
+    /* Copy feedback */
+    .copy-toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #262626;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 100px;
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      pointer-events: none;
+    }
+    .copy-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ===== Brand icons via SVG ===== */
+    .icon-cv {
+      background: #0053D6;
+    }
+    .icon-dribbble {
+      background: #EA4C89;
+    }
+    .icon-linkedin {
+      background: #0A66C2;
+    }
+    .icon-email {
+      background: #ffffff;
+      border: 1px solid #e8e4df;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-item">Home</a>
+    <a href="about.html" class="nav-item">About</a>
+    <a href="contact.html" class="nav-item active">Contact</a>
+  </nav>
+
+  <main class="page">
+
+    <div class="row row-3">
+
+      <!-- CV -->
+      <a class="card" href="assets/aslıhan_müberra_yıldırım_cv.pdf" target="_blank">
+        <div class="card-top">
+          <span class="card-label">CV'yi İncele</span>
+          <div class="card-arrow">↗</div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-icon icon-cv">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" rx="8" fill="#0053D6"/>
+              <path d="M9 8h9l5 5v11a1 1 0 01-1 1H9a1 1 0 01-1-1V9a1 1 0 011-1z" fill="white" opacity=".9"/>
+              <path d="M18 8l5 5h-4a1 1 0 01-1-1V8z" fill="white" opacity=".5"/>
+              <rect x="11" y="16" width="10" height="1.5" rx=".75" fill="#0053D6"/>
+              <rect x="11" y="19" width="7" height="1.5" rx=".75" fill="#0053D6"/>
+            </svg>
+          </div>
+          <span class="card-name">CV</span>
+        </div>
+      </a>
+
+      <!-- Dribbble -->
+      <a class="card" href="https://dribbble.com/aslihanmuberra" target="_blank">
+        <div class="card-top">
+          <span class="card-label">Follow</span>
+          <div class="card-arrow">↗</div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-icon icon-dribbble">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="16" cy="16" r="10" stroke="white" stroke-width="2" fill="none"/>
+              <path d="M6.5 12.5c3 1 6.5 1.5 10 1 3.5-.5 6.5-2 8-4" stroke="white" stroke-width="1.5" fill="none"/>
+              <path d="M10 6.5c1.5 3 2.5 7 2 11-.5 4-2 7.5-4 9.5" stroke="white" stroke-width="1.5" fill="none"/>
+              <path d="M22 7.5c-2 3.5-5.5 6.5-10 8s-8.5 1-10.5 0" stroke="white" stroke-width="1.5" fill="none"/>
+            </svg>
+          </div>
+          <span class="card-name">Dribbble</span>
+        </div>
+      </a>
+
+      <!-- LinkedIn -->
+      <a class="card" href="https://www.linkedin.com/in/aslıhan-müberra-yıldırım-65ba48417" target="_blank">
+        <div class="card-top">
+          <span class="card-label">Connect</span>
+          <div class="card-arrow">↗</div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-icon icon-linkedin">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" rx="8" fill="#0A66C2"/>
+              <rect x="8" y="13" width="4" height="12" rx="1" fill="white"/>
+              <circle cx="10" cy="9.5" r="2.5" fill="white"/>
+              <path d="M15 13h3.5v1.8c.7-1.2 2-2 3.5-2 3 0 4 2 4 5v6.2h-4v-5.5c0-1.5-.5-2.5-1.8-2.5-1.2 0-2 .8-2 2.5V24H15V13z" fill="white"/>
+            </svg>
+          </div>
+          <span class="card-name">LinkedIn</span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Email -->
+    <div class="row row-1">
+      <div class="card card--email" onclick="copyEmail()" style="cursor:pointer;">
+        <div class="card-top">
+          <span class="card-label">Say Hi</span>
+          <div class="card-arrow" style="font-size:14px;">⧉</div>
+        </div>
+        <div class="card-bottom">
+          <div class="card-icon icon-email">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="8" width="24" height="16" rx="3" stroke="#EA4335" stroke-width="2" fill="none"/>
+              <path d="M4 11l12 8 12-8" stroke="#EA4335" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+          <span class="card-name">ayildirim7818@gmail.com</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+
+  <div class="copy-toast" id="toast">E-posta kopyalandı!</div>
+
+  <script>
+    function copyEmail() {
+      navigator.clipboard.writeText('ayildirim7818@gmail.com');
+      const t = document.getElementById('toast');
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2000);
+    }
+  </script>
+
+</body>
+</html>
