@@ -177,6 +177,18 @@
       transition: opacity 0.2s ease;
     }
     .cv-btn:hover { opacity: 0.8; }
+
+    @media (max-width: 768px) {
+      .page {
+        grid-template-columns: 1fr;
+        padding: 16px 20px 60px;
+        gap: 32px;
+      }
+      .bio-title { font-size: 36px; letter-spacing: -1px; }
+      .bio-p { font-size: 15px; }
+      .cards { position: static; }
+      .photo-card { aspect-ratio: 3 / 2; }
+    }
   </style>
 </head>
 <body>

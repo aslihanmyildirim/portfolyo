@@ -176,6 +176,14 @@
       background: #ffffff;
       border: 1px solid #e8e4df;
     }
+
+    @media (max-width: 768px) {
+      .page { padding: 16px 16px 60px; }
+      .row-3 { grid-template-columns: 1fr; }
+      .card { min-height: 160px; }
+      .card-name { font-size: 22px; }
+      .card--email .card-name { font-size: 17px; letter-spacing: -.2px; word-break: break-all; }
+    }
   </style>
 </head>
 <body>
