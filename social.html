@@ -80,19 +80,20 @@
     .grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
+      grid-auto-flow: dense;
       gap: 16px;
     }
     .tile {
       width: 100%;
-      aspect-ratio: 1 / 1;
       border-radius: 18px;
       overflow: hidden;
       background: #f4f4f2;
     }
+    .tile.span-2 { grid-column: span 2; }
+    .tile.span-3 { grid-column: span 3; }
     .tile img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
       display: block;
     }
 
@@ -102,6 +103,7 @@
       .page-sub { font-size: 15px; }
       .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
       .tile { border-radius: 14px; }
+      .tile.span-2, .tile.span-3 { grid-column: span 2; }
     }
   </style>
 </head>
@@ -149,6 +151,19 @@
       <div class="tile"><img src="assets/p28.png" alt="Post 28" loading="lazy" /></div>
     </div>
   </main>
+
+  <script>
+    document.querySelectorAll('.tile img').forEach(img => {
+      const apply = () => {
+        const r = img.naturalWidth / img.naturalHeight;
+        const tile = img.parentElement;
+        if (r >= 2.4) tile.classList.add('span-3');
+        else if (r >= 1.4) tile.classList.add('span-2');
+      };
+      if (img.complete && img.naturalWidth) apply();
+      else img.addEventListener('load', apply);
+    });
+  </script>
 
 </body>
 </html>
