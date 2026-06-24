@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sosyal Medya — Aslıhan Yıldırım</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink: #262626;
+      --accent: #ffffe9;
+      --bg: #ffffff;
+      --font: "Figtree", sans-serif;
+    }
+
+    body {
+      font-family: var(--font);
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .nav {
+      margin: 12px auto 4px;
+      height: 56px;
+      width: max-content;
+      background: #ffffff;
+      border: 1px solid #efece8;
+      border-radius: 100px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 0 8px;
+      z-index: 1000;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #262626;
+      text-decoration: none;
+      border-radius: 100px;
+      transition: background 0.2s ease;
+    }
+    .nav-item:hover { background: #f5f2ee; }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 40px 80px;
+    }
+
+    .page-head {
+      margin-bottom: 32px;
+    }
+    .page-title {
+      font-size: 44px;
+      font-weight: 800;
+      letter-spacing: -1.4px;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .page-sub {
+      font-size: 17px;
+      font-weight: 500;
+      color: rgba(38,38,38,0.55);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .tile {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #f4f4f2;
+    }
+    .tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .page { padding: 16px 16px 60px; }
+      .page-title { font-size: 32px; letter-spacing: -1px; }
+      .page-sub { font-size: 15px; }
+      .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .tile { border-radius: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-item">Home</a>
+    <a href="about.html" class="nav-item">About</a>
+    <a href="contact.html" class="nav-item">Contact</a>
+  </nav>
+
+  <main class="page">
+    <div class="page-head">
+      <h1 class="page-title">Sosyal Medya Tasarımları</h1>
+      <p class="page-sub">Farklı markalar için hazırlanmış sosyal medya görselleri.</p>
+    </div>
+
+    <div class="grid">
+      <div class="tile"><img src="assets/p1.png" alt="Post 1" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p2.png" alt="Post 2" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p3.png" alt="Post 3" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p4.png" alt="Post 4" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p 5.png" alt="Post 5" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p6.png" alt="Post 6" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p7.png" alt="Post 7" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p8.png" alt="Post 8" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p10.png" alt="Post 10" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p11.png" alt="Post 11" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p12.png" alt="Post 12" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p13.png" alt="Post 13" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p14.png" alt="Post 14" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p15.png" alt="Post 15" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p16.png" alt="Post 16" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p17.png" alt="Post 17" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p18.png" alt="Post 18" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p19.png" alt="Post 19" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p20.png" alt="Post 20" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p21.png" alt="Post 21" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p22.png" alt="Post 22" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p23.png" alt="Post 23" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p24.png" alt="Post 24" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p25.png" alt="Post 25" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p26.png" alt="Post 26" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p27.png" alt="Post 27" loading="lazy" /></div>
+      <div class="tile"><img src="assets/p28.png" alt="Post 28" loading="lazy" /></div>
+    </div>
+  </main>
+
+</body>
+</html>

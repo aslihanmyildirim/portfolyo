@@ -88,7 +88,7 @@ const CARDS = [
     { k:"text", z:5, cls:"label", txt:"Pomodoro Timer", txt2:"Vibe-Coded Web App", style:"font-size:15px;line-height:26px;", i:[27,22,1], h:[27,22,1] },
   ]},
 
-  { id:"social", x:916, y:1392, w:549, h:487, bg:"#f7f7f7", bgH:"#ffffe9", r:25, clip:false, els:[
+  { id:"social", href:"social.html", x:916, y:1392, w:549, h:487, bg:"#f7f7f7", bgH:"#ffffe9", r:25, clip:false, els:[
     { k:"img", z:1, src:"social_lettering.png", fit:"contain", i:[275,243.5,530,177,0,1], h:[275,243.5,530,177,0,0] },
     { k:"img", z:2, src:"social_post1.png", r:6, i:[145,295,204,291,14.31,0], h:[145,295,204,291,14.31,1] },
     { k:"img", z:3, src:"social_post2.png", r:6, i:[410,210,188,293,-11.04,0], h:[410,210,188,293,-11.04,1] },
