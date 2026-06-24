@@ -26,7 +26,10 @@ html, body {
 
 /* ===== Nav ===== */
 .nav {
-  margin: 12px auto 4px;
+  position: absolute;
+  left: 50%;
+  top: 40px;
+  transform: translateX(-50%);
   width: max-content;
   height: 56px;
   background: #f7f7f7;
@@ -38,7 +41,6 @@ html, body {
   padding: 0 8px;
   z-index: 100;
 }
-.nav--bottom { margin: 40px auto 48px; }
 .nav-item {
   display: flex;
   align-items: center;
