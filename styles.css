@@ -31,10 +31,8 @@ html, body {
   top: 40px;
   width: 381px;
   height: 56px;
-  background: #ffffff;
-  border: 1px solid #efece8;
+  background: #ececec;
   border-radius: 100px;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,7 +51,7 @@ html, body {
   border-radius: 100px;
   transition: background 0.2s ease;
 }
-.nav-item:hover { background: #f5f2ee; }
+.nav-item:hover { background: rgba(255,255,255,0.6); }
 .nav-item.active { background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
 .nav-item.active:hover { background: #ffffff; }
 
