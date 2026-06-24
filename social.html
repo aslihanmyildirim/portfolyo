@@ -111,6 +111,12 @@
       .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
       .tile { border-radius: 14px; }
       .tile.span-2, .tile.span-3 { grid-column: span 2; }
+      .tile-l1 { order: 1; }
+      .tile-l2 { order: 2; }
+      .tile-l3 { order: 3; }
+      .tile-l4 { order: 4; }
+      .tile-l5 { order: 5; }
+      .tile-l6 { order: 6; }
     }
   </style>
 </head>
@@ -161,12 +167,12 @@
 
     <h2 class="section-title">App Icon</h2>
     <div class="grid">
-      <div class="tile"><img src="assets/l1.png" alt="App Icon 1" loading="lazy" /></div>
-      <div class="tile"><img src="assets/l2.png" alt="App Icon 2" loading="lazy" /></div>
-      <div class="tile"><img src="assets/l5.png" alt="App Icon 5" loading="lazy" /></div>
-      <div class="tile"><img src="assets/l4.png" alt="App Icon 4" loading="lazy" /></div>
-      <div class="tile"><img src="assets/l3.png" alt="App Icon 3" loading="lazy" /></div>
-      <div class="tile"><img src="assets/l6.png" alt="App Icon 6" loading="lazy" /></div>
+      <div class="tile tile-l1"><img src="assets/l1.png" alt="App Icon 1" loading="lazy" /></div>
+      <div class="tile tile-l2"><img src="assets/l2.png" alt="App Icon 2" loading="lazy" /></div>
+      <div class="tile tile-l5"><img src="assets/l5.png" alt="App Icon 5" loading="lazy" /></div>
+      <div class="tile tile-l4"><img src="assets/l4.png" alt="App Icon 4" loading="lazy" /></div>
+      <div class="tile tile-l3"><img src="assets/l3.png" alt="App Icon 3" loading="lazy" /></div>
+      <div class="tile tile-l6"><img src="assets/l6.png" alt="App Icon 6" loading="lazy" /></div>
     </div>
   </main>
 
